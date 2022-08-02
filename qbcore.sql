@@ -42,3 +42,11 @@ CREATE TABLE IF NOT EXISTS `player_contacts` (
   PRIMARY KEY (`id`),
   KEY `citizenid` (`citizenid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1;
+
+
+CREATE TABLE IF NOT EXISTS `user_permissions` {
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `license` varchar(50) DEFAULT NULL,
+  `group` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+} ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
