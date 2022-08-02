@@ -299,6 +299,8 @@ end
 
 -- Setting & Removing Permissions
 
+
+-- TODO: ADD permision to databse
 function QBCore.Functions.AddPermission(source, permission)
     local src = source
     local license = QBCore.Functions.GetIdentifier(src, 'license')
@@ -348,6 +350,7 @@ end
 function QBCore.Functions.IsOptin(source)
     local license = QBCore.Functions.GetIdentifier(source, 'license')
     if not license or not QBCore.Functions.HasPermission(source, 'admin') then return false end
+    if QBConfig.Server.OptinAll then return true end -- If optin is disabled, all staffs are opted in
     local Player = QBCore.Functions.GetPlayer(source)
     return Player.PlayerData.optin
 end
@@ -355,6 +358,7 @@ end
 function QBCore.Functions.ToggleOptin(source)
     local license = QBCore.Functions.GetIdentifier(source, 'license')
     if not license or not QBCore.Functions.HasPermission(source, 'admin') then return end
+    if QBConfig.Server.OptinAll then return end -- If optin is disabled, all staffs are opted in
     local Player = QBCore.Functions.GetPlayer(source)
     Player.PlayerData.optin = not Player.PlayerData.optin
     Player.Functions.SetPlayerData('optin', Player.PlayerData.optin)
